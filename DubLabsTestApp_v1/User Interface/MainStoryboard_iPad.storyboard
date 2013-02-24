@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="aaz-vh-0uR">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="EBh-BY-Fjx">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="jph-vc-deK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cVb-PC-J2J">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bSW-Sp-Ckv" kind="relationship" relationship="rootViewController" id="fHL-YS-g3f"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bQ3-YV-hHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="682" y="-151"/>
+        </scene>
+        <!--Feed Item Detail View Controller-->
+        <scene sceneID="QZl-y1-LjL">
+            <objects>
+                <viewController id="bSW-Sp-Ckv" customClass="DLTFeedItemDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WtE-mc-HQ4">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.25" contentMode="center" image="DubLabs-Full-400x200.png" translatesAutoresizingMaskIntoConstraints="NO" id="BOm-mt-cMq"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="p0G-Af-0q2"/>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BOm-mt-cMq" firstAttribute="trailing" secondItem="WtE-mc-HQ4" secondAttribute="trailing" type="default" id="3gB-ye-jsm"/>
+                            <constraint firstItem="BOm-mt-cMq" firstAttribute="top" secondItem="WtE-mc-HQ4" secondAttribute="top" type="default" id="PTK-5M-Qmi"/>
+                            <constraint firstItem="p0G-Af-0q2" firstAttribute="trailing" secondItem="WtE-mc-HQ4" secondAttribute="trailing" type="default" id="Uqj-We-3c3"/>
+                            <constraint firstItem="p0G-Af-0q2" firstAttribute="leading" secondItem="WtE-mc-HQ4" secondAttribute="leading" type="default" id="bqL-VQ-KAI"/>
+                            <constraint firstItem="p0G-Af-0q2" firstAttribute="top" secondItem="WtE-mc-HQ4" secondAttribute="top" type="default" id="hFa-nF-LQK"/>
+                            <constraint firstItem="BOm-mt-cMq" firstAttribute="bottom" secondItem="WtE-mc-HQ4" secondAttribute="bottom" type="default" id="tW9-nd-hE6"/>
+                            <constraint firstItem="p0G-Af-0q2" firstAttribute="bottom" secondItem="WtE-mc-HQ4" secondAttribute="bottom" type="default" id="vc5-1D-b0u"/>
+                            <constraint firstItem="BOm-mt-cMq" firstAttribute="leading" secondItem="WtE-mc-HQ4" secondAttribute="leading" type="default" id="wud-CA-nFL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Deb-t2-BzV">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="VOr-w7-MnJ">
+                            <rect key="frame" x="230" y="7" width="307" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Image"/>
+                                <segment title="Web"/>
+                            </segments>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mainImageView" destination="p0G-Af-0q2" id="TPp-u0-Q19"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pYB-aJ-gIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1601" y="-151"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NvY-db-0ci">
+            <objects>
+                <navigationController id="k34-vJ-VFM" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="SHE-Yb-bdY">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="G1H-gA-HY3" kind="relationship" relationship="rootViewController" id="DLW-ov-N6l"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aKx-P5-9GY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="682" y="-1236"/>
+        </scene>
+        <!--Feed Items View Controller-->
+        <scene sceneID="mDT-rM-RbR">
+            <objects>
+                <viewController id="G1H-gA-HY3" customClass="DLTFeedItemsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6v9-3d-2Mu">
+                        <rect key="frame" x="0.0" y="64" width="320" height="788"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NhE-rq-Y2c">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedItemCell" id="xep-Mr-ED0" customClass="DLTFeedItemCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" image="DLTFeedItemCell.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="le7-Ya-qCc"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3g7-hC-eZm">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="78" id="U14-ee-qVd"/>
+                                                        <constraint firstAttribute="width" constant="78" id="gMr-bX-L77"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSD-if-Iin">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="208" id="ew3-yH-npI"/>
+                                                        <constraint firstAttribute="height" constant="32" id="l5n-ws-ltl"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="oVM-ZN-7DV">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="Pnh-cF-014"/>
+                                                        <constraint firstAttribute="width" constant="160" id="Veh-64-zzF"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPF-Yn-QZ7">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="xSv-PG-FNJ"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="LPF-Yn-QZ7" firstAttribute="top" secondItem="dSD-if-Iin" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="8bs-B8-q3l"/>
+                                            <constraint firstItem="le7-Ya-qCc" firstAttribute="leading" secondItem="xep-Mr-ED0" secondAttribute="leading" type="default" id="O7W-9Q-THV"/>
+                                            <constraint firstItem="oVM-ZN-7DV" firstAttribute="top" secondItem="dSD-if-Iin" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="U7S-Z7-GbH"/>
+                                            <constraint firstItem="oVM-ZN-7DV" firstAttribute="leading" secondItem="dSD-if-Iin" secondAttribute="leading" type="default" id="Y7y-69-eyG"/>
+                                            <constraint firstItem="3g7-hC-eZm" firstAttribute="centerY" secondItem="le7-Ya-qCc" secondAttribute="centerY" type="default" id="YWW-de-Khe"/>
+                                            <constraint firstItem="dSD-if-Iin" firstAttribute="top" secondItem="xep-Mr-ED0" secondAttribute="top" constant="4" id="hCg-Se-I8r"/>
+                                            <constraint firstAttribute="trailing" secondItem="LPF-Yn-QZ7" secondAttribute="trailing" constant="4" id="ixA-tM-KYb"/>
+                                            <constraint firstItem="3g7-hC-eZm" firstAttribute="leading" secondItem="xep-Mr-ED0" secondAttribute="leading" constant="5" id="jgg-1N-lNI"/>
+                                            <constraint firstItem="le7-Ya-qCc" firstAttribute="top" secondItem="xep-Mr-ED0" secondAttribute="top" type="default" id="jqO-ee-YGs"/>
+                                            <constraint firstAttribute="trailing" secondItem="dSD-if-Iin" secondAttribute="trailing" constant="20" type="default" id="lJn-hD-pcQ"/>
+                                            <constraint firstItem="LPF-Yn-QZ7" firstAttribute="bottom" secondItem="oVM-ZN-7DV" secondAttribute="bottom" type="default" id="tpq-C9-Zj5"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="authorIconImageView" destination="LPF-Yn-QZ7" id="jX7-0A-sGR"/>
+                                            <outlet property="authorLabel" destination="dSD-if-Iin" id="XNW-uN-aag"/>
+                                            <outlet property="descriptionLabel" destination="oVM-ZN-7DV" id="31E-dw-0M8"/>
+                                            <outlet property="thumbnailImageview" destination="3g7-hC-eZm" id="Ku9-hn-e2B"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="G1H-gA-HY3" id="rED-EG-uH0"/>
+                                    <outlet property="delegate" destination="G1H-gA-HY3" id="HkJ-Ka-9z7"/>
+                                </connections>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xpF-Ug-LXG">
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ByK-bY-bct"/>
+                                    <barButtonItem systemItem="search" id="AOe-ja-Mq2"/>
+                                </items>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xpF-Ug-LXG" firstAttribute="bottom" secondItem="6v9-3d-2Mu" secondAttribute="bottom" type="default" id="3XV-ix-6a2"/>
+                            <constraint firstItem="xpF-Ug-LXG" firstAttribute="trailing" secondItem="6v9-3d-2Mu" secondAttribute="trailing" type="default" id="U04-ra-Naf"/>
+                            <constraint firstItem="NhE-rq-Y2c" firstAttribute="top" secondItem="6v9-3d-2Mu" secondAttribute="top" type="default" id="gsH-rF-SD0"/>
+                            <constraint firstItem="xpF-Ug-LXG" firstAttribute="leading" secondItem="6v9-3d-2Mu" secondAttribute="leading" type="default" id="hGg-mf-K6l"/>
+                            <constraint firstItem="NhE-rq-Y2c" firstAttribute="trailing" secondItem="6v9-3d-2Mu" secondAttribute="trailing" type="default" id="hHe-8T-TaK"/>
+                            <constraint firstItem="NhE-rq-Y2c" firstAttribute="leading" secondItem="6v9-3d-2Mu" secondAttribute="leading" type="default" id="wRa-V8-yso"/>
+                            <constraint firstItem="NhE-rq-Y2c" firstAttribute="bottom" secondItem="xpF-Ug-LXG" secondAttribute="top" type="default" id="zpx-DR-TAx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rZG-gm-K0g">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Ujn-OF-kUn">
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="G1H-gA-HY3" id="st5-8Y-pVG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="feedTableView" destination="NhE-rq-Y2c" id="ozU-Zc-ckA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jJh-Lo-3aJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1125" y="-1236"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="dP7-j1-5gX">
+            <objects>
+                <splitViewController id="aaz-vh-0uR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <connections>
+                        <segue destination="k34-vJ-VFM" kind="relationship" relationship="masterViewController" id="tJ0-m4-aUj"/>
+                        <segue destination="jph-vc-deK" kind="relationship" relationship="detailViewController" id="GEQ-Ws-lab"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qch-dL-fEQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-300" y="-769"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="DLTFeedItemCell.PNG" width="320" height="88"/>
+        <image name="DubLabs-Full-400x200.png" width="400" height="200"/>
+    </resources>
+    <classes>
+        <class className="DLTFeedItemCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLTFeedItemCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="authorIconImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="authorLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="thumbnailImageview" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="DLTFeedItemDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLTFeedItemDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mainImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="DLTFeedItemsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLTFeedItemsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshButtonTapped:"/>
+                <relationship kind="outlet" name="detailViewController" candidateClass="DLTFeedItemDetailViewController"/>
+                <relationship kind="outlet" name="feedTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

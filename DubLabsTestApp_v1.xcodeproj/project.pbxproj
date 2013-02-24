@@ -21,6 +21,17 @@
 		B999087916D9D406004E5B35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B999085A16D9D405004E5B35 /* Foundation.framework */; };
 		B999088116D9D406004E5B35 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B999087F16D9D406004E5B35 /* InfoPlist.strings */; };
 		B999088416D9D406004E5B35 /* DubLabsTestApp_v1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B999088316D9D406004E5B35 /* DubLabsTestApp_v1Tests.m */; };
+		B999089016D9D436004E5B35 /* DLTCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = B999088F16D9D436004E5B35 /* DLTCommon.m */; };
+		B999089616D9D43D004E5B35 /* DLTFeedItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B999089316D9D43D004E5B35 /* DLTFeedItemDetailViewController.m */; };
+		B999089716D9D43D004E5B35 /* DLTFeedItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B999089516D9D43D004E5B35 /* DLTFeedItemsViewController.m */; };
+		B999089D16D9D44D004E5B35 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B999089C16D9D44D004E5B35 /* MainStoryboard_iPad.storyboard */; };
+		B99908A916D9E526004E5B35 /* FlickrAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B99908A816D9E526004E5B35 /* FlickrAPI.m */; };
+		B99908AC16D9E536004E5B35 /* FlickrFeedReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B99908AB16D9E536004E5B35 /* FlickrFeedReader.m */; };
+		B99908AF16D9E5B9004E5B35 /* FlickrFeedReaderRss2.m in Sources */ = {isa = PBXBuildFile; fileRef = B99908AE16D9E5B9004E5B35 /* FlickrFeedReaderRss2.m */; };
+		B99908B116D9F1E3004E5B35 /* DubLabs-Full-400x200.png in Resources */ = {isa = PBXBuildFile; fileRef = B99908B016D9F1E3004E5B35 /* DubLabs-Full-400x200.png */; };
+		B99908B416D9F2F9004E5B35 /* DLTFeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99908B316D9F2F9004E5B35 /* DLTFeedItemCell.m */; };
+		B99908B616D9F80C004E5B35 /* flickr_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B99908B516D9F80C004E5B35 /* flickr_logo.png */; };
+		B99908B816D9FAEE004E5B35 /* DLTFeedItemCell.PNG in Resources */ = {isa = PBXBuildFile; fileRef = B99908B716D9FAEE004E5B35 /* DLTFeedItemCell.PNG */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +64,24 @@
 		B999088016D9D406004E5B35 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B999088216D9D406004E5B35 /* DubLabsTestApp_v1Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DubLabsTestApp_v1Tests.h; sourceTree = "<group>"; };
 		B999088316D9D406004E5B35 /* DubLabsTestApp_v1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DubLabsTestApp_v1Tests.m; sourceTree = "<group>"; };
+		B999088E16D9D436004E5B35 /* DLTCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTCommon.h; sourceTree = "<group>"; };
+		B999088F16D9D436004E5B35 /* DLTCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTCommon.m; sourceTree = "<group>"; };
+		B999089216D9D43D004E5B35 /* DLTFeedItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTFeedItemDetailViewController.h; sourceTree = "<group>"; };
+		B999089316D9D43D004E5B35 /* DLTFeedItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTFeedItemDetailViewController.m; sourceTree = "<group>"; };
+		B999089416D9D43D004E5B35 /* DLTFeedItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTFeedItemsViewController.h; sourceTree = "<group>"; };
+		B999089516D9D43D004E5B35 /* DLTFeedItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTFeedItemsViewController.m; sourceTree = "<group>"; };
+		B999089C16D9D44D004E5B35 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		B99908A716D9E526004E5B35 /* FlickrAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPI.h; sourceTree = "<group>"; };
+		B99908A816D9E526004E5B35 /* FlickrAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPI.m; sourceTree = "<group>"; };
+		B99908AA16D9E536004E5B35 /* FlickrFeedReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrFeedReader.h; sourceTree = "<group>"; };
+		B99908AB16D9E536004E5B35 /* FlickrFeedReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFeedReader.m; sourceTree = "<group>"; };
+		B99908AD16D9E5B9004E5B35 /* FlickrFeedReaderRss2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrFeedReaderRss2.h; sourceTree = "<group>"; };
+		B99908AE16D9E5B9004E5B35 /* FlickrFeedReaderRss2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFeedReaderRss2.m; sourceTree = "<group>"; };
+		B99908B016D9F1E3004E5B35 /* DubLabs-Full-400x200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DubLabs-Full-400x200.png"; sourceTree = "<group>"; };
+		B99908B216D9F2F9004E5B35 /* DLTFeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTFeedItemCell.h; sourceTree = "<group>"; };
+		B99908B316D9F2F9004E5B35 /* DLTFeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTFeedItemCell.m; sourceTree = "<group>"; };
+		B99908B516D9F80C004E5B35 /* flickr_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flickr_logo.png; sourceTree = "<group>"; };
+		B99908B716D9FAEE004E5B35 /* DLTFeedItemCell.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DLTFeedItemCell.PNG; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +141,11 @@
 		B999085E16D9D405004E5B35 /* DubLabsTestApp_v1 */ = {
 			isa = PBXGroup;
 			children = (
+				B999088D16D9D436004E5B35 /* Common */,
+				B99908A616D9E51B004E5B35 /* Fiickr */,
+				B999089116D9D43D004E5B35 /* Feeds */,
+				B999089816D9D446004E5B35 /* Images */,
+				B999089B16D9D44D004E5B35 /* User Interface */,
 				B999086716D9D405004E5B35 /* DLTAppDelegate.h */,
 				B999086816D9D405004E5B35 /* DLTAppDelegate.m */,
 				B999085F16D9D405004E5B35 /* Supporting Files */,
@@ -150,6 +184,59 @@
 				B999087F16D9D406004E5B35 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B999088D16D9D436004E5B35 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B999088E16D9D436004E5B35 /* DLTCommon.h */,
+				B999088F16D9D436004E5B35 /* DLTCommon.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B999089116D9D43D004E5B35 /* Feeds */ = {
+			isa = PBXGroup;
+			children = (
+				B999089216D9D43D004E5B35 /* DLTFeedItemDetailViewController.h */,
+				B999089316D9D43D004E5B35 /* DLTFeedItemDetailViewController.m */,
+				B99908B216D9F2F9004E5B35 /* DLTFeedItemCell.h */,
+				B99908B316D9F2F9004E5B35 /* DLTFeedItemCell.m */,
+				B999089416D9D43D004E5B35 /* DLTFeedItemsViewController.h */,
+				B999089516D9D43D004E5B35 /* DLTFeedItemsViewController.m */,
+			);
+			path = Feeds;
+			sourceTree = "<group>";
+		};
+		B999089816D9D446004E5B35 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B99908B716D9FAEE004E5B35 /* DLTFeedItemCell.PNG */,
+				B99908B516D9F80C004E5B35 /* flickr_logo.png */,
+				B99908B016D9F1E3004E5B35 /* DubLabs-Full-400x200.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		B999089B16D9D44D004E5B35 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				B999089C16D9D44D004E5B35 /* MainStoryboard_iPad.storyboard */,
+			);
+			path = "User Interface";
+			sourceTree = "<group>";
+		};
+		B99908A616D9E51B004E5B35 /* Fiickr */ = {
+			isa = PBXGroup;
+			children = (
+				B99908AA16D9E536004E5B35 /* FlickrFeedReader.h */,
+				B99908AB16D9E536004E5B35 /* FlickrFeedReader.m */,
+				B99908AD16D9E5B9004E5B35 /* FlickrFeedReaderRss2.h */,
+				B99908AE16D9E5B9004E5B35 /* FlickrFeedReaderRss2.m */,
+				B99908A716D9E526004E5B35 /* FlickrAPI.h */,
+				B99908A816D9E526004E5B35 /* FlickrAPI.m */,
+			);
+			path = Fiickr;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +315,10 @@
 				B999086B16D9D405004E5B35 /* Default.png in Resources */,
 				B999086D16D9D405004E5B35 /* Default@2x.png in Resources */,
 				B999086F16D9D405004E5B35 /* Default-568h@2x.png in Resources */,
+				B999089D16D9D44D004E5B35 /* MainStoryboard_iPad.storyboard in Resources */,
+				B99908B116D9F1E3004E5B35 /* DubLabs-Full-400x200.png in Resources */,
+				B99908B616D9F80C004E5B35 /* flickr_logo.png in Resources */,
+				B99908B816D9FAEE004E5B35 /* DLTFeedItemCell.PNG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +355,13 @@
 			files = (
 				B999086516D9D405004E5B35 /* main.m in Sources */,
 				B999086916D9D405004E5B35 /* DLTAppDelegate.m in Sources */,
+				B999089016D9D436004E5B35 /* DLTCommon.m in Sources */,
+				B999089616D9D43D004E5B35 /* DLTFeedItemDetailViewController.m in Sources */,
+				B999089716D9D43D004E5B35 /* DLTFeedItemsViewController.m in Sources */,
+				B99908A916D9E526004E5B35 /* FlickrAPI.m in Sources */,
+				B99908AC16D9E536004E5B35 /* FlickrFeedReader.m in Sources */,
+				B99908AF16D9E5B9004E5B35 /* FlickrFeedReaderRss2.m in Sources */,
+				B99908B416D9F2F9004E5B35 /* DLTFeedItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
