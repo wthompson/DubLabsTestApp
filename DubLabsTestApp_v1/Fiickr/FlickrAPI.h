@@ -10,5 +10,6 @@
 #import "FlickrFeedReaderRss2.h"
 
 @interface FlickrAPI : NSObject
+//Returns an instance of a FeedReader based on the specified feed format type
 +(id)feedReaderForFormatType:(NSInteger)formatType;
 @end

@@ -38,22 +38,25 @@ NSString * const FLICKR_FEED_URL = @"http://api.flickr.com/services/feeds/photos
     return self.responseDict;
 }
 
-//
+//This method should be called in the background
 -(void)refreshWithTags:(NSArray *)tags
 {
+    //Construct initial URL string
     NSMutableString *urlString = [NSMutableString stringWithFormat:FLICKR_FEED_URL, [self stringForFeedFormat]];
+    
+    //Append tags CGI parameter if provided
     NSString *tagsCGIParameter = [self stringForTags:tags];
     if([tagsCGIParameter length] > 0)
     {
         [urlString appendFormat:@"&tags=%@", tagsCGIParameter];
     }
     
-    
-    
+    //Invoke the URL and retrieve the feed data
     NSURL *flickrURL = [NSURL URLWithString:urlString];
     NSError *error = nil;
     NSData *responseData = [[NSData alloc] initWithContentsOfURL:flickrURL options:NSDataReadingMapped error:&error];
     
+    //If there was no error, process the response message
     if(error == nil)
     {
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:responseData];
@@ -66,7 +69,7 @@ NSString * const FLICKR_FEED_URL = @"http://api.flickr.com/services/feeds/photos
     }
 }
 
-//
+//These methods are to be implemented by subclasses of FlickrFeedReader
 -(NSUInteger)itemCount
 {
     NSAssert(NO, @"\"itemCount\" needs to be implemented by a derived class.");
@@ -119,6 +122,7 @@ NSString * const FLICKR_FEED_URL = @"http://api.flickr.com/services/feeds/photos
 //
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
+    //Instantiate parsing variables
     self.responseDict = [NSMutableDictionary dictionary];
     self.elementChainArray = [NSMutableArray array];
     self.elementTextString = [NSMutableString string];
@@ -129,35 +133,44 @@ NSString * const FLICKR_FEED_URL = @"http://api.flickr.com/services/feeds/photos
 //
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
+    //Track current element name
     [self setCurrentElementName:elementName];
     
+    //Construct initial element dictionary and story available XML attributes
     NSMutableDictionary *elementDict = [NSMutableDictionary dictionary];
     if([attributeDict count] > 0)
     {
         [elementDict addEntriesFromDictionary:attributeDict];
     }
     
+    //Check for an existing element key
     id existingValue = [self.currentDict objectForKey:self.currentElementName];
     if(existingValue != nil)
     {
+        //If we have a duplicate element, construct Array to story all elements
         if([existingValue isKindOfClass:[NSMutableArray class]])
         {
+            //Add to existing array
             [(NSMutableArray *)existingValue addObject:elementDict];
         }
         else
         {
+            //Build new array and place exisitng objects inside
             NSMutableArray *tempArray = [NSMutableArray array];
             [tempArray addObject:existingValue];
             [tempArray addObject:elementDict];
             
+            //Replace the element key with the array
             [self.currentDict setObject:tempArray forKey:self.currentElementName];
         }
     }
     else
     {
+        //First occurence of the element, set as element key
         [self.currentDict setObject:elementDict forKey:self.currentElementName];
     }
     
+    //Track elements through the XML structure
     [self.elementChainArray addObject:elementDict];
     [self setCurrentDict:[self.elementChainArray lastObject]];
 }
@@ -165,6 +178,7 @@ NSString * const FLICKR_FEED_URL = @"http://api.flickr.com/services/feeds/photos
 //
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+    //Accumulate XML characters
     [self.elementTextString appendString:string];
 }
 
@@ -206,14 +220,15 @@ NSString * const FLICKR_FEED_URL = @"http://api.flickr.com/services/feeds/photos
 // sent when the parser begins parsing of the document.
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    NSLog(@"FINISHED:%@", [self.responseDict description]);
-    
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *filePath = [docDir stringByAppendingPathComponent:@"ResponseDict.plist"];
+    
+    //This is for debugging purposes or persistent storage
     [self.responseDict writeToFile:filePath atomically:YES];
 }
 @end
 
+#pragma mark - NSString Flickr Category
 @implementation NSString(Flickr)
 //
 +(NSString *)flickr_emptyString

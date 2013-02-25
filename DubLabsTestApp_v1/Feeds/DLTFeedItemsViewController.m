@@ -33,6 +33,8 @@
 @synthesize shouldRefresh = _shouldRefresh;
 @synthesize isRefreshing = _isRefreshing;
 
+#pragma mark - Initialization
+//
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,6 +43,7 @@
     return self;
 }
 
+//
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -54,6 +57,8 @@
     return self;
 }
 
+#pragma mark - View Lifecycle
+//
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -107,10 +112,12 @@
 //
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //Pass Feed Reader information to the Detail View Controller
     [self.detailViewController setFeedReader:self.feedReader];
     [self.detailViewController setItemIndex:indexPath.row];
     [self.detailViewController loadImage];
     
+    //Dismiss the master view after a small delay
     dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_async(bgQueue, ^(){
         
@@ -133,26 +140,32 @@
 //
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //Dequeue appropriate cell
     static NSString *CellID = @"FeedItemCell";
     DLTFeedItemCell *cell = (DLTFeedItemCell *)[tableView dequeueReusableCellWithIdentifier:CellID forIndexPath:indexPath];
     
+    //Set text
     [cell.authorLabel setText:[self.feedReader authorForFeedItemAtIndex:indexPath.row]];
     [cell.descriptionLabel setText:[self.feedReader descriptionForFeedItemAtIndex:indexPath.row]];
     
+    //Extract thumbnail image info and retrieve from cache
     NSString *indexPathKey = [NSString stringWithFormat:@"S%dR%d", indexPath.section, indexPath.row];
     UIImage *thumbnailImage = [self.thumbnailImageCacheDict objectForKey:indexPathKey];
     
     if(thumbnailImage != nil)
     {
+        //Use cached image
         [cell.thumbnailImageview setImage:thumbnailImage];
     }
     else
     {
+        //Image not cached, load new one from the URL info
         [cell.thumbnailImageview setImage:nil];
         [cell setNeedsLayout];
         
         NSString *thumbnailImageURLString = [self.feedReader thumbnailImageURLStringForFeedItemAtIndex:indexPath.row];
         
+        //Get thumbnail image in the background
         dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
         dispatch_async(bgQueue, ^(){
             
@@ -164,6 +177,7 @@
             {
                 [self.thumbnailImageCacheDict setObject:image forKey:indexPathKey];
                 
+                //Update the UI with the new image
                 dispatch_async(dispatch_get_main_queue(), ^(){
                     
                     [cell.thumbnailImageview setImage:image];
@@ -180,11 +194,13 @@
 //
 -(void)tagEditorViewController:(DLTTagEditorViewController *)tagEditor saveButtonTapped:(id)sender withTags:(NSArray *)tags
 {
+    //If there are new tags, flag for refreshing
     if(![tags isEqualToArray:self.feedTagArray])
     {
         [self setShouldRefresh:YES];
     }
     
+    //Store new tags and pop back to master
     [self setFeedTagArray:tags];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -193,6 +209,7 @@
 //
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    //Setup the Tag Editor prior to segueu
     if([segue.destinationViewController isKindOfClass:[DLTTagEditorViewController class]])
     {
         [(DLTTagEditorViewController *)segue.destinationViewController setDelegate:self];
@@ -203,15 +220,20 @@
 //
 -(IBAction)refreshButtonTapped:(id)sender
 {
+    //Prevent 2nd refresh
     if(!self.isRefreshing)
     {
+        //Clear thumbnail cache
         [self.thumbnailImageCacheDict removeAllObjects];
         
+        //Perform refresh in the background
         dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
         dispatch_async(bgQueue, ^(){
             
+            //Flag for refreshing
             [self setIsRefreshing:YES];
             
+            //Perform UI updates, inform the user that we are doing work
             dispatch_async(dispatch_get_main_queue(), ^(){
                 
                 [self.detailViewController clearImage];
@@ -223,8 +245,10 @@
                 [self.navigationItem setRightBarButtonItem:activityButtonItem animated:YES];
             });
             
+            //Do work
             [self.feedReader refreshWithTags:self.feedTagArray];
             
+            //Update the UI, inform the user that we are done
             dispatch_async(dispatch_get_main_queue(), ^(){
                 
                 [self.feedTableView reloadData];
@@ -233,13 +257,14 @@
                 [self.navigationItem setRightBarButtonItem:refreshButton animated:YES];
             });
             
+            //Turn off flag
             [self setIsRefreshing:NO];
         });
     }
 }
 
 #pragma mark - Private Instance Methods
-//
+//Initializes Detail View Controller values
 -(void)setupDetailViewController
 {
     if(self.splitViewController)
@@ -249,7 +274,8 @@
         [self.detailViewController setMasterDelegate:self];
     }
 }
-//
+
+//Sets up the navigation item
 -(void)setupNavigationItem
 {
     NSString *titleImagePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"flickr_logo.png"];

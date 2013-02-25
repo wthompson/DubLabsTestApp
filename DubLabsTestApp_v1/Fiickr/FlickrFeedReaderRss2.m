@@ -25,7 +25,7 @@ NSString * const FLICKR_API_FEED_KEY_URL             = @"url";
     return FlickrFeedFormatTypeRss2;
 }
 
-//
+//Extracts a count of items from the feed data
 -(NSUInteger)itemCount
 {
     NSUInteger count = 0;
@@ -43,13 +43,13 @@ NSString * const FLICKR_API_FEED_KEY_URL             = @"url";
     return count;
 }
 
-//
+//Returns the CGI parameter string for the feed format
 -(NSString *)stringForFeedFormat
 {
     return FLICKR_API_FEED_KEY_RSS2;
 }
 
-//
+//Constructs a CGI parameter string for the "tags" search string
 -(NSString *)stringForTags:(NSArray *)tags
 {
     NSMutableString *tempString = [NSMutableString stringWithString:@""];
@@ -67,7 +67,7 @@ NSString * const FLICKR_API_FEED_KEY_URL             = @"url";
     return [NSString stringWithString:tempString];
 }
 
-//
+//Returns a string for the item author 
 -(NSString *)authorForFeedItemAtIndex:(NSUInteger)index
 {
     NSString *author = nil;
@@ -85,7 +85,7 @@ NSString * const FLICKR_API_FEED_KEY_URL             = @"url";
     return author;
 }
 
-//
+//Returns a string for the description of the item at the specified index
 -(NSString *)descriptionForFeedItemAtIndex:(NSUInteger)index
 {
     NSString *description = nil;
@@ -103,7 +103,7 @@ NSString * const FLICKR_API_FEED_KEY_URL             = @"url";
     return description;
 }
 
-//
+//Returns a string for the thumbail image URL
 -(NSString *)thumbnailImageURLStringForFeedItemAtIndex:(NSUInteger)index
 {
     NSString *thumbnailImageURLString = nil;
@@ -124,7 +124,7 @@ NSString * const FLICKR_API_FEED_KEY_URL             = @"url";
     return thumbnailImageURLString;
 }
 
-//
+//Returns a string for the image URL
 -(NSString *)imageURLStringForFeedItemAtIndex:(NSUInteger)index
 {
     NSString *imageURLString = nil;

@@ -24,6 +24,8 @@
 @synthesize tagArray = _tagArray;
 @synthesize previousTextField = _previousTextField;
 
+#pragma mark - Initialization
+//
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,10 +35,13 @@
     return self;
 }
 
+#pragma mark - View Lifecycle
+//
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    //If we have not initial tags, init with empty tag
     if([self.tagArray count] == 0)
     {
         self.tagArray = [NSMutableArray arrayWithObject:@""];
@@ -45,7 +50,8 @@
 
 //
 -(void)viewDidAppear:(BOOL)animated
-{   
+{
+    //Select last tag for editing
     NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:([self.tagArray count] - 1) inSection:0];
     DLTTagEditorCell *cell = (DLTTagEditorCell *)[self.tableView cellForRowAtIndexPath:lastIndexPath];
     [cell.textField becomeFirstResponder];
@@ -87,6 +93,7 @@
 //
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    //If the previous text field was empty, remove from tags list
     if(self.previousTextField != nil && [self.previousTextField.text length] == 0)
     {
         DLTTagEditorCell *cell = (DLTTagEditorCell *)self.previousTextField.superview;
@@ -96,12 +103,14 @@
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationTop];
     }
     
+    //Track previous text field
     [self setPreviousTextField:textField];
 }
 
 //
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{   
+{
+    //Story the text field's text in the array
     DLTTagEditorCell *cell = (DLTTagEditorCell *)textField.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.tagArray replaceObjectAtIndex:indexPath.row withObject:textField.text];
@@ -109,13 +118,15 @@
     return YES;
 }
 
-//
+//Handles the creating of new tags
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     BOOL shouldChange = YES;
     DLTTagEditorCell *cell = (DLTTagEditorCell *)textField.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
+ 
+    //If we have text, check to see if we need to create a new tag
+    //New tags are auto created for special characters
     if([string length] > 0)
     {
         unichar lastChar = [string characterAtIndex:(string.length - 1)];
@@ -133,6 +144,7 @@
     }
     else if(range.length >= textField.text.length)
     {
+        //User has cleared the text field, remove and withdraw to previous tag
         shouldChange = (indexPath.row == 0);
         [self withdrawToPreviousTagFromTagEditorCell:cell];
     }
@@ -143,6 +155,7 @@
 //
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    //Advance to new tag on return
     [self advanceToNewTagFromTagEditorCell:(DLTTagEditorCell *)textField.superview];
     return YES;
 }
@@ -151,6 +164,7 @@
 //
 -(IBAction)saveButtonTapped:(id)sender
 {
+    //Ensure all text fields have resigned first responder
     for(int i = 0; i < [self.tagArray count]; i++)
     {
         NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
@@ -165,6 +179,7 @@
         }
     }
     
+    //Collect all valid tags
     NSMutableArray *tempArray = [NSMutableArray array];
     [self.tagArray enumerateObjectsUsingBlock:^(NSString *tagString, NSUInteger index, BOOL *stop){
         
@@ -174,6 +189,7 @@
         }
     }];
     
+    //Construct user tags array
     NSArray *userTagArray = ([tempArray count] > 0) ? [NSArray arrayWithArray:tempArray] : nil;
     
     //Allow the keyboard to dismiss prior to invoking the delegate
@@ -205,13 +221,16 @@
 {
     if([cell.textField.text length] > 0)
     {
+        //Get current cell and update its text value
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [self.tagArray replaceObjectAtIndex:indexPath.row withObject:cell.textField.text];
         [self.tagArray addObject:@""];
         
+        //Determine next tag indexpath
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:([self.tagArray count] - 1) inSection:0];
         [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationTop];
         
+        //Update the UI after a small delay
         dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
         dispatch_async(bgQueue, ^(){
             
@@ -226,7 +245,7 @@
     }
 }
 
-//
+//Removes an empty tag, and sets the previous text field for editing
 -(void)withdrawToPreviousTagFromTagEditorCell:(DLTTagEditorCell *)cell
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];

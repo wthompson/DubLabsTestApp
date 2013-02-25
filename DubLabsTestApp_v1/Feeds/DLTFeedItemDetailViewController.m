@@ -22,6 +22,8 @@
 @synthesize mainImageView = _mainImageView;
 @synthesize activityIndicator = _activityIndicator;
 
+#pragma mark - Initialization
+//
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,6 +33,8 @@
     return self;
 }
 
+#pragma mark - View Lifecycle
+//
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,11 +51,14 @@
 //
 -(void)loadImage
 {
+    //Extract the image URL from the feed reader
     NSString *imageURLString = [self.feedReader imageURLStringForFeedItemAtIndex:self.itemIndex];
     
+    //Download the image in the background
     dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_async(bgQueue, ^(){
         
+        //Start the activity indicator on the main thread (UI)
         dispatch_async(dispatch_get_main_queue(), ^(){
             
             [UIView animateWithDuration:0.25
@@ -64,9 +71,11 @@
                              completion:nil];
         });
         
+        //Construct image URL and retrieve the image data
         NSURL *imageURL = [NSURL URLWithString:imageURLString];
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL options:NSDataReadingMapped error:nil];
         
+        //Stop the activity indicator on the main thread (UI)
         dispatch_async(dispatch_get_main_queue(), ^(){
             
             [UIView animateWithDuration:0.25
@@ -80,8 +89,10 @@
                              }];
         });
         
+        //Ensure we have image data to process
         if([imageData length] > 0)
         {
+            //Constuct image for the imageview on the main thread (UI)
             dispatch_async(dispatch_get_main_queue(), ^(){
                 
                 UIImage *img = [UIImage imageWithData:imageData scale:1.0];
@@ -93,6 +104,7 @@
                 
                 [self.view addSubview:newImageView];
                 
+                //Replace existing image view with new one
                 [UIView animateWithDuration:0.5
                                  animations:^(){
                                      
@@ -101,6 +113,7 @@
                                  }
                                  completion:^(BOOL finished){
                                      
+                                     //Clean up
                                      [self.mainImageView removeFromSuperview];
                                      [self setMainImageView:newImageView];
                                  }];
@@ -108,11 +121,12 @@
         }
         else
         {
+            //TODO: Handle error
         }
     });
 }
 
-//
+//Clears the current image animated
 -(void)clearImage
 {
     [UIView animateWithDuration:0.25
