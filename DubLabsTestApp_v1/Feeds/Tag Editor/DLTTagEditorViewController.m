@@ -101,13 +101,10 @@
 
 //
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    if([textField.text length] > 0)
-    {
-        DLTTagEditorCell *cell = (DLTTagEditorCell *)textField.superview;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [self.tagArray replaceObjectAtIndex:indexPath.row withObject:textField.text];
-    }
+{   
+    DLTTagEditorCell *cell = (DLTTagEditorCell *)textField.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self.tagArray replaceObjectAtIndex:indexPath.row withObject:textField.text];
     
     return YES;
 }

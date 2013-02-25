@@ -214,6 +214,8 @@
             
             dispatch_async(dispatch_get_main_queue(), ^(){
                 
+                [self.detailViewController clearImage];
+                
                 UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
                 [activityIndicator startAnimating];
                 

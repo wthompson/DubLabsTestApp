@@ -111,4 +111,18 @@
         }
     });
 }
+
+//
+-(void)clearImage
+{
+    [UIView animateWithDuration:0.5
+                     animations:^(){
+                         [self.mainImageView setAlpha:0.0];
+                     }
+                     completion:^(BOOL finsihed){
+                         
+                         [self.mainImageView setImage:nil];
+                         [self.mainImageView setNeedsLayout];
+                     }];
+}
 @end

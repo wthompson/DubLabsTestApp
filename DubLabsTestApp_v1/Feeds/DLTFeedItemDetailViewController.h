@@ -19,4 +19,5 @@
 @property (nonatomic, assign) id<FlickrFeedReaderProtocol> feedReader;
 @property (nonatomic, assign) NSUInteger itemIndex;
 -(void)loadImage;
+-(void)clearImage;
 @end
