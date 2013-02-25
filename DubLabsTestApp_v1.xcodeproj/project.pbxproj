@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B921C2B116DB36F800432145 /* DubLabsTestAppIcon_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = B921C2B016DB36F800432145 /* DubLabsTestAppIcon_72x72.png */; };
+		B921C2B316DB36FB00432145 /* DubLabsTestAppIcon_144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = B921C2B216DB36FB00432145 /* DubLabsTestAppIcon_144x144.png */; };
 		B999085916D9D405004E5B35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B999085816D9D405004E5B35 /* UIKit.framework */; };
 		B999085B16D9D405004E5B35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B999085A16D9D405004E5B35 /* Foundation.framework */; };
 		B999085D16D9D405004E5B35 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B999085C16D9D405004E5B35 /* CoreGraphics.framework */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B921C2B016DB36F800432145 /* DubLabsTestAppIcon_72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DubLabsTestAppIcon_72x72.png; sourceTree = "<group>"; };
+		B921C2B216DB36FB00432145 /* DubLabsTestAppIcon_144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DubLabsTestAppIcon_144x144.png; sourceTree = "<group>"; };
 		B999085516D9D405004E5B35 /* DubLabsTestApp_v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubLabsTestApp_v1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B999085816D9D405004E5B35 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B999085A16D9D405004E5B35 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -123,6 +127,8 @@
 		B999084C16D9D405004E5B35 = {
 			isa = PBXGroup;
 			children = (
+				B921C2B216DB36FB00432145 /* DubLabsTestAppIcon_144x144.png */,
+				B921C2B016DB36F800432145 /* DubLabsTestAppIcon_72x72.png */,
 				B99908BF16DA13A6004E5B35 /* Default-Landscape~ipad.png */,
 				B99908BD16DA132A004E5B35 /* Default-Landscape@2x~ipad.png */,
 				B99908BB16DA130B004E5B35 /* Default-Portrait@2x~ipad.png */,
@@ -349,6 +355,8 @@
 				B99908BE16DA132A004E5B35 /* Default-Landscape@2x~ipad.png in Resources */,
 				B99908C016DA13A6004E5B35 /* Default-Landscape~ipad.png in Resources */,
 				B99908C116DA13E8004E5B35 /* Default-Portrait~ipad.png in Resources */,
+				B921C2B116DB36F800432145 /* DubLabsTestAppIcon_72x72.png in Resources */,
+				B921C2B316DB36FB00432145 /* DubLabsTestAppIcon_144x144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +578,7 @@
 				B999088916D9D406004E5B35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B999088A16D9D406004E5B35 /* Build configuration list for PBXNativeTarget "DubLabsTestApp_v1Tests" */ = {
 			isa = XCConfigurationList;
@@ -578,6 +587,7 @@
 				B999088C16D9D406004E5B35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
