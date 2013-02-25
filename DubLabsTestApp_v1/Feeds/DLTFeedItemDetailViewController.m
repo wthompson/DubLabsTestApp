@@ -10,6 +10,7 @@
 
 @interface DLTFeedItemDetailViewController ()
 @property (nonatomic, weak) IBOutlet UIImageView *mainImageView;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation DLTFeedItemDetailViewController
@@ -19,6 +20,7 @@
 @synthesize itemIndex = _itemIndex;
 
 @synthesize mainImageView = _mainImageView;
+@synthesize activityIndicator = _activityIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,8 +52,33 @@
     dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_async(bgQueue, ^(){
         
+        dispatch_async(dispatch_get_main_queue(), ^(){
+            
+            [UIView animateWithDuration:0.25
+                             animations:^(){
+                                 
+                                 [self.view bringSubviewToFront:self.activityIndicator];
+                                 [self.activityIndicator startAnimating];
+                                 [self.activityIndicator setAlpha:1.0];
+                             }
+                             completion:nil];
+        });
+        
         NSURL *imageURL = [NSURL URLWithString:imageURLString];
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL options:NSDataReadingMapped error:nil];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(){
+            
+            [UIView animateWithDuration:0.25
+                             animations:^(){
+                                 
+                                 [self.activityIndicator setAlpha:0.0];
+                             }
+                             completion:^(BOOL finished){
+                                 
+                                 [self.activityIndicator stopAnimating];
+                             }];
+        });
         
         if([imageData length] > 0)
         {

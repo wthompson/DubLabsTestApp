@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UIPopoverController *masterPopoverController;
 @property (nonatomic, strong) id<FlickrFeedReaderProtocol> feedReader;
 @property (nonatomic, strong) NSMutableDictionary *thumbnailImageCacheDict;
+@property (nonatomic, assign) BOOL isRefreshing;
 -(IBAction)refreshButtonTapped:(id)sender;
 -(void)setupDetailViewController;
 -(void)setupNavigationItem;
@@ -26,6 +27,7 @@
 @synthesize masterPopoverController = _masterPopoverController;
 @synthesize feedReader = _feedReader;
 @synthesize thumbnailImageCacheDict = _thumbnailImageCacheDict;
+@synthesize isRefreshing = _isRefreshing;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -172,19 +174,38 @@
 #pragma mark - User Interaction
 //
 -(IBAction)refreshButtonTapped:(id)sender
-{   
-    [self.thumbnailImageCacheDict removeAllObjects];
-    
-    dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-    dispatch_async(bgQueue, ^(){
+{
+    if(!self.isRefreshing)
+    {
+        [self.thumbnailImageCacheDict removeAllObjects];
         
-        [self.feedReader refresh];
-        
-        dispatch_async(dispatch_get_main_queue(), ^(){
+        dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        dispatch_async(bgQueue, ^(){
             
-            [self.feedTableView reloadData];
+            [self setIsRefreshing:YES];
+            
+            dispatch_async(dispatch_get_main_queue(), ^(){
+                
+                UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+                [activityIndicator startAnimating];
+                
+                UIBarButtonItem *activityButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+                [self.navigationItem setRightBarButtonItem:activityButtonItem animated:YES];
+            });
+            
+            [self.feedReader refresh];
+            
+            dispatch_async(dispatch_get_main_queue(), ^(){
+                
+                [self.feedTableView reloadData];
+                
+                UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:_cmd];
+                [self.navigationItem setRightBarButtonItem:refreshButton animated:YES];
+            });
+            
+            [self setIsRefreshing:NO];
         });
-    });
+    }
 }
 
 #pragma mark - Private Instance Methods
