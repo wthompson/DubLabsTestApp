@@ -8,6 +8,16 @@
 
 #import "FlickrFeedReaderRss2.h"
 
+NSString * const FLICKR_API_FEED_KEY_RSS2            = @"rss2";
+NSString * const FLICKR_API_FEED_KEY_RSS             = @"rss";
+NSString * const FLICKR_API_FEED_KEY_CHANNEL         = @"channel";
+NSString * const FLICKR_API_FEED_KEY_ITEM            = @"item";
+NSString * const FLICKR_API_FEED_KEY_MEDIA_CREDIT    = @"media:credit";
+NSString * const FLICKR_API_FEED_KEY_MEDIA_TITLE     = @"media:title";
+NSString * const FLICKR_API_FEED_KEY_MEDIA_THUMBNAIL = @"media:thumbnail";
+NSString * const FLICKR_API_FEED_KEY_MEDIA_CONTENT   = @"media:content";
+NSString * const FLICKR_API_FEED_KEY_URL             = @"url";
+
 @implementation FlickrFeedReaderRss2
 //
 -(FlickrFeedFormatType)formatType
@@ -19,7 +29,7 @@
 -(NSUInteger)itemCount
 {
     NSUInteger count = 0;
-    id feedItem = [[[self.feedDataDict objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
+    id feedItem = [[[self.feedDataDict objectForKey:FLICKR_API_FEED_KEY_RSS] objectForKey:FLICKR_API_FEED_KEY_CHANNEL] objectForKey:FLICKR_API_FEED_KEY_ITEM];
     
     if([feedItem isKindOfClass:[NSArray class]])
     {
@@ -36,7 +46,7 @@
 //
 -(NSString *)stringForFeedFormat
 {
-    return @"rss2";
+    return FLICKR_API_FEED_KEY_RSS2;
 }
 
 //
@@ -61,15 +71,15 @@
 -(NSString *)authorForFeedItemAtIndex:(NSUInteger)index
 {
     NSString *author = nil;
-    id feedItem = [[[self.feedDataDict objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
+    id feedItem = [[[self.feedDataDict objectForKey:FLICKR_API_FEED_KEY_RSS] objectForKey:FLICKR_API_FEED_KEY_CHANNEL] objectForKey:FLICKR_API_FEED_KEY_ITEM];
     
     if([feedItem isKindOfClass:[NSArray class]])
     {
-        author = [[feedItem objectAtIndex:index] objectForKey:@"media:credit"];
+        author = [[feedItem objectAtIndex:index] objectForKey:FLICKR_API_FEED_KEY_MEDIA_CREDIT];
     }
     else
     {
-        author = [feedItem objectForKey:@"media:credit"];
+        author = [feedItem objectForKey:FLICKR_API_FEED_KEY_MEDIA_CREDIT];
     }
     
     return author;
@@ -79,15 +89,15 @@
 -(NSString *)descriptionForFeedItemAtIndex:(NSUInteger)index
 {
     NSString *description = nil;
-    id feedItem = [[[self.feedDataDict objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
+    id feedItem = [[[self.feedDataDict objectForKey:FLICKR_API_FEED_KEY_RSS] objectForKey:FLICKR_API_FEED_KEY_CHANNEL] objectForKey:FLICKR_API_FEED_KEY_ITEM];
     
     if([feedItem isKindOfClass:[NSArray class]])
     {
-        description = [[feedItem objectAtIndex:index] objectForKey:@"media:title"];
+        description = [[feedItem objectAtIndex:index] objectForKey:FLICKR_API_FEED_KEY_MEDIA_TITLE];
     }
     else
     {
-        description = [feedItem objectForKey:@"media:title"];
+        description = [feedItem objectForKey:FLICKR_API_FEED_KEY_MEDIA_TITLE];
     }
     
     return description;
@@ -97,18 +107,18 @@
 -(NSString *)thumbnailImageURLStringForFeedItemAtIndex:(NSUInteger)index
 {
     NSString *thumbnailImageURLString = nil;
-    id feedItem = [[[self.feedDataDict objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
+    id feedItem = [[[self.feedDataDict objectForKey:FLICKR_API_FEED_KEY_RSS] objectForKey:FLICKR_API_FEED_KEY_CHANNEL] objectForKey:FLICKR_API_FEED_KEY_ITEM];
     
     if([feedItem isKindOfClass:[NSArray class]])
     {
-        NSDictionary *thumbnailDict = [[feedItem objectAtIndex:index] objectForKey:@"media:thumbnail"];
-        thumbnailImageURLString = [thumbnailDict objectForKey:@"url"];
+        NSDictionary *thumbnailDict = [[feedItem objectAtIndex:index] objectForKey:FLICKR_API_FEED_KEY_MEDIA_THUMBNAIL];
+        thumbnailImageURLString = [thumbnailDict objectForKey:FLICKR_API_FEED_KEY_URL];
         
     }
     else
     {
-        NSDictionary *thumbnailDict = [feedItem objectForKey:@"media:thumbnail"];
-        thumbnailImageURLString = [thumbnailDict objectForKey:@"url"];
+        NSDictionary *thumbnailDict = [feedItem objectForKey:FLICKR_API_FEED_KEY_MEDIA_THUMBNAIL];
+        thumbnailImageURLString = [thumbnailDict objectForKey:FLICKR_API_FEED_KEY_URL];
     }
     
     return thumbnailImageURLString;
@@ -118,18 +128,18 @@
 -(NSString *)imageURLStringForFeedItemAtIndex:(NSUInteger)index
 {
     NSString *imageURLString = nil;
-    id feedItem = [[[self.feedDataDict objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
+    id feedItem = [[[self.feedDataDict objectForKey:FLICKR_API_FEED_KEY_RSS] objectForKey:FLICKR_API_FEED_KEY_CHANNEL] objectForKey:FLICKR_API_FEED_KEY_ITEM];
     
     if([feedItem isKindOfClass:[NSArray class]])
     {
-        NSDictionary *thumbnailDict = [[feedItem objectAtIndex:index] objectForKey:@"media:content"];
-        imageURLString = [thumbnailDict objectForKey:@"url"];
+        NSDictionary *thumbnailDict = [[feedItem objectAtIndex:index] objectForKey:FLICKR_API_FEED_KEY_MEDIA_CONTENT];
+        imageURLString = [thumbnailDict objectForKey:FLICKR_API_FEED_KEY_URL];
         
     }
     else
     {
-        NSDictionary *thumbnailDict = [feedItem objectForKey:@"media:content"];
-        imageURLString = [thumbnailDict objectForKey:@"url"];
+        NSDictionary *thumbnailDict = [feedItem objectForKey:FLICKR_API_FEED_KEY_MEDIA_CONTENT];
+        imageURLString = [thumbnailDict objectForKey:FLICKR_API_FEED_KEY_URL];
     }
     
     return imageURLString;

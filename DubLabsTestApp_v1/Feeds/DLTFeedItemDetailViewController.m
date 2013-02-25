@@ -115,7 +115,7 @@
 //
 -(void)clearImage
 {
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:0.25
                      animations:^(){
                          [self.mainImageView setAlpha:0.0];
                      }
