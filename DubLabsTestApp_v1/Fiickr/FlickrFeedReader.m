@@ -8,6 +8,8 @@
 
 #import "FlickrFeedReader.h"
 
+NSString * const FLICKR_FEED_URL = @"http://api.flickr.com/services/feeds/photos_public.gne?format=%@";
+
 @interface FlickrFeedReader()
 @property (nonatomic, strong) NSMutableDictionary *responseDict;
 @property (nonatomic, strong) NSMutableArray *elementChainArray;
@@ -37,9 +39,18 @@
 }
 
 //
--(void)refresh
+-(void)refreshWithTags:(NSArray *)tags
 {
-    NSURL *flickrURL = [NSURL URLWithString:@"http://api.flickr.com/services/feeds/photos_public.gne?format=rss2"];
+    NSMutableString *urlString = [NSMutableString stringWithFormat:FLICKR_FEED_URL, [self stringForFeedFormat]];
+    NSString *tagsCGIParameter = [self stringForTags:tags];
+    if([tagsCGIParameter length] > 0)
+    {
+        [urlString appendFormat:@"&tags=%@", tagsCGIParameter];
+    }
+    
+    
+    
+    NSURL *flickrURL = [NSURL URLWithString:urlString];
     NSError *error = nil;
     NSData *responseData = [[NSData alloc] initWithContentsOfURL:flickrURL options:NSDataReadingMapped error:&error];
     
@@ -60,6 +71,20 @@
 {
     NSAssert(NO, @"\"itemCount\" needs to be implemented by a derived class.");
     return 0;
+}
+
+//
+-(NSString *)stringForFeedFormat
+{
+    NSAssert(NO, @"\"stringForFeedFormat\" needs to be implemented by a derived class.");
+    return nil;
+}
+
+//
+-(NSString *)stringForTags:(NSArray *)tags
+{
+    NSAssert(NO, @"\"stringForTags\" needs to be implemented by a derived class.");
+    return nil;
 }
 
 //

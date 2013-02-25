@@ -20,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="682" y="-151"/>
         </scene>
-        <!--Feed Item Detail View Controller-->
+        <!--Feed Item Detail View Controller - Details-->
         <scene sceneID="QZl-y1-LjL">
             <objects>
                 <viewController id="bSW-Sp-Ckv" customClass="DLTFeedItemDetailViewController" sceneMemberID="viewController">
@@ -46,17 +46,7 @@
                             <constraint firstItem="BOm-mt-cMq" firstAttribute="leading" secondItem="WtE-mc-HQ4" secondAttribute="leading" type="default" id="wud-CA-nFL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Deb-t2-BzV">
-                        <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="VOr-w7-MnJ">
-                            <rect key="frame" x="230" y="7" width="307" height="31"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Image"/>
-                                <segment title="Web"/>
-                            </segments>
-                        </segmentedControl>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Details" id="Deb-t2-BzV"/>
                     <connections>
                         <outlet property="activityIndicator" destination="9iP-Hh-Dfb" id="Bgt-V7-s7A"/>
                         <outlet property="mainImageView" destination="p0G-Af-0q2" id="TPp-u0-Q19"/>
@@ -161,7 +151,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xpF-Ug-LXG">
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ByK-bY-bct"/>
-                                    <barButtonItem systemItem="search" id="AOe-ja-Mq2"/>
+                                    <barButtonItem title="Tags" id="rzj-rO-nSY">
+                                        <connections>
+                                            <segue destination="Dmk-f4-Qqc" kind="push" id="FFe-gv-nl3"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
@@ -191,6 +185,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jJh-Lo-3aJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1125" y="-1236"/>
+        </scene>
+        <!--Tag Editor View Controller - Tags-->
+        <scene sceneID="nVv-5P-fIH">
+            <objects>
+                <viewController id="Dmk-f4-Qqc" customClass="DLTTagEditorViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jjK-bM-6pK">
+                        <rect key="frame" x="0.0" y="64" width="320" height="788"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-eG-5e2">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="DLTTagEditorCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DLTTagEditorCell" id="SPa-YA-2BR" customClass="DLTTagEditorCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Dmk-f4-Qqc" id="6yJ-wO-DUb"/>
+                                    <outlet property="delegate" destination="Dmk-f4-Qqc" id="M6r-rW-VsM"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ca0-eG-5e2" firstAttribute="bottom" secondItem="jjK-bM-6pK" secondAttribute="bottom" type="default" id="QRN-l9-Vh8"/>
+                            <constraint firstItem="ca0-eG-5e2" firstAttribute="leading" secondItem="jjK-bM-6pK" secondAttribute="leading" type="default" id="bqn-3n-fap"/>
+                            <constraint firstItem="ca0-eG-5e2" firstAttribute="trailing" secondItem="jjK-bM-6pK" secondAttribute="trailing" type="default" id="m0P-Vm-39T"/>
+                            <constraint firstItem="ca0-eG-5e2" firstAttribute="top" secondItem="jjK-bM-6pK" secondAttribute="top" type="default" id="z4d-PT-OdM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Tags" id="Hwd-8q-ev1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="j7A-Tj-byU">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="Dmk-f4-Qqc" id="o9Q-fo-bCR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="ca0-eG-5e2" id="HR2-1b-QMf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MOT-RI-ASw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1595" y="-1236"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="dP7-j1-5gX">
@@ -234,6 +279,16 @@
                 <relationship kind="action" name="refreshButtonTapped:"/>
                 <relationship kind="outlet" name="detailViewController" candidateClass="DLTFeedItemDetailViewController"/>
                 <relationship kind="outlet" name="feedTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="DLTTagEditorCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLTTagEditorCell.h"/>
+        </class>
+        <class className="DLTTagEditorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLTTagEditorViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveButtonTapped:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">

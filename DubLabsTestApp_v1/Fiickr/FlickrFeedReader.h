@@ -20,8 +20,10 @@ typedef enum
 @protocol FlickrFeedReaderProtocol <NSObject>
 @property (nonatomic, readonly) FlickrFeedFormatType formatType;
 @property (nonatomic, readonly) NSDictionary *feedDataDict;
--(void)refresh;
+-(void)refreshWithTags:(NSArray *)tags;
 -(NSUInteger)itemCount;
+-(NSString *)stringForFeedFormat;
+-(NSString *)stringForTags:(NSArray *)tags;
 -(NSString *)authorForFeedItemAtIndex:(NSUInteger)index;
 -(NSString *)descriptionForFeedItemAtIndex:(NSUInteger)index;
 -(NSString *)thumbnailImageURLStringForFeedItemAtIndex:(NSUInteger)index;

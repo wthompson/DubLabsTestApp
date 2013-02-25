@@ -34,6 +34,8 @@
 		B99908BE16DA132A004E5B35 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B99908BD16DA132A004E5B35 /* Default-Landscape@2x~ipad.png */; };
 		B99908C016DA13A6004E5B35 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B99908BF16DA13A6004E5B35 /* Default-Landscape~ipad.png */; };
 		B99908C116DA13E8004E5B35 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B99908B916DA12F8004E5B35 /* Default-Portrait~ipad.png */; };
+		B99908C516DAE3AB004E5B35 /* DLTTagEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99908C416DAE3AB004E5B35 /* DLTTagEditorViewController.m */; };
+		B99908C816DAE592004E5B35 /* DLTTagEditorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99908C716DAE592004E5B35 /* DLTTagEditorCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,10 @@
 		B99908BB16DA130B004E5B35 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		B99908BD16DA132A004E5B35 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		B99908BF16DA13A6004E5B35 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		B99908C316DAE3AB004E5B35 /* DLTTagEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTTagEditorViewController.h; sourceTree = "<group>"; };
+		B99908C416DAE3AB004E5B35 /* DLTTagEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTTagEditorViewController.m; sourceTree = "<group>"; };
+		B99908C616DAE592004E5B35 /* DLTTagEditorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTTagEditorCell.h; sourceTree = "<group>"; };
+		B99908C716DAE592004E5B35 /* DLTTagEditorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTTagEditorCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +214,7 @@
 		B999089116D9D43D004E5B35 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
+				B99908C216DAE38C004E5B35 /* Tag Editor */,
 				B999089216D9D43D004E5B35 /* DLTFeedItemDetailViewController.h */,
 				B999089316D9D43D004E5B35 /* DLTFeedItemDetailViewController.m */,
 				B99908B216D9F2F9004E5B35 /* DLTFeedItemCell.h */,
@@ -247,6 +254,17 @@
 				B99908A816D9E526004E5B35 /* FlickrAPI.m */,
 			);
 			path = Fiickr;
+			sourceTree = "<group>";
+		};
+		B99908C216DAE38C004E5B35 /* Tag Editor */ = {
+			isa = PBXGroup;
+			children = (
+				B99908C616DAE592004E5B35 /* DLTTagEditorCell.h */,
+				B99908C716DAE592004E5B35 /* DLTTagEditorCell.m */,
+				B99908C316DAE3AB004E5B35 /* DLTTagEditorViewController.h */,
+				B99908C416DAE3AB004E5B35 /* DLTTagEditorViewController.m */,
+			);
+			path = "Tag Editor";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,6 +392,8 @@
 				B99908AC16D9E536004E5B35 /* FlickrFeedReader.m in Sources */,
 				B99908AF16D9E5B9004E5B35 /* FlickrFeedReaderRss2.m in Sources */,
 				B99908B416D9F2F9004E5B35 /* DLTFeedItemCell.m in Sources */,
+				B99908C516DAE3AB004E5B35 /* DLTTagEditorViewController.m in Sources */,
+				B99908C816DAE592004E5B35 /* DLTTagEditorCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

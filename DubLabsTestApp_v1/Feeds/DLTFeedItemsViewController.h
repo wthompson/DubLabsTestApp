@@ -10,7 +10,13 @@
 #import "FlickrAPI.h"
 #import "DLTFeedItemCell.h"
 #import "DLTFeedItemDetailViewController.h"
+#import "DLTTagEditorViewController.h"
 
-@interface DLTFeedItemsViewController : UIViewController<UISplitViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, DLTFeedItemDetailViewControllerDelegate>
+@interface DLTFeedItemsViewController : UIViewController<
+UISplitViewControllerDelegate,
+UITableViewDataSource,
+UITableViewDelegate,
+DLTFeedItemDetailViewControllerDelegate,
+DLTTagEditorViewControllerDelegate>
 
 @end

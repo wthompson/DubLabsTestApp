@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIPopoverController *masterPopoverController;
 @property (nonatomic, strong) id<FlickrFeedReaderProtocol> feedReader;
 @property (nonatomic, strong) NSMutableDictionary *thumbnailImageCacheDict;
+@property (nonatomic, strong) NSArray *feedTagArray;
+@property (nonatomic, assign) BOOL shouldRefresh;
 @property (nonatomic, assign) BOOL isRefreshing;
 -(IBAction)refreshButtonTapped:(id)sender;
 -(void)setupDetailViewController;
@@ -27,6 +29,8 @@
 @synthesize masterPopoverController = _masterPopoverController;
 @synthesize feedReader = _feedReader;
 @synthesize thumbnailImageCacheDict = _thumbnailImageCacheDict;
+@synthesize feedTagArray = _feedTagArray;
+@synthesize shouldRefresh = _shouldRefresh;
 @synthesize isRefreshing = _isRefreshing;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,8 +47,8 @@
     
     if (self) {
         
-        NSLog(@"SVC:%@", [self.splitViewController description]);
         [self.splitViewController setDelegate:self];
+        [self setShouldRefresh:YES];
     }
     
     return self;
@@ -64,8 +68,9 @@
 //
 -(void)viewDidAppear:(BOOL)animated
 {
-    if([self.feedReader itemCount] == 0)
+    if(self.shouldRefresh)
     {
+        [self setShouldRefresh:NO];
         [self refreshButtonTapped:nil];
     }
 }
@@ -171,7 +176,30 @@
     return cell;
 }
 
+#pragma mark - DLTTagEditorViewControllerDelegate
+//
+-(void)tagEditorViewController:(DLTTagEditorViewController *)tagEditor saveButtonTapped:(id)sender withTags:(NSArray *)tags
+{
+    if(![tags isEqualToArray:self.feedTagArray])
+    {
+        [self setShouldRefresh:YES];
+    }
+    
+    [self setFeedTagArray:tags];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 #pragma mark - User Interaction
+//
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.destinationViewController isKindOfClass:[DLTTagEditorViewController class]])
+    {
+        [(DLTTagEditorViewController *)segue.destinationViewController setDelegate:self];
+        [(DLTTagEditorViewController *)segue.destinationViewController setInitialTags:self.feedTagArray];
+    }
+}
+
 //
 -(IBAction)refreshButtonTapped:(id)sender
 {
@@ -193,7 +221,7 @@
                 [self.navigationItem setRightBarButtonItem:activityButtonItem animated:YES];
             });
             
-            [self.feedReader refresh];
+            [self.feedReader refreshWithTags:self.feedTagArray];
             
             dispatch_async(dispatch_get_main_queue(), ^(){
                 
